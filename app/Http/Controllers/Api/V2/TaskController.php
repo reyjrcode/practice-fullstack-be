@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api\V2;
 
+use App\Http\Requests\StoreTasksRequest;
 use App\Models\Task;
 use Illuminate\Http\Response;
 use App\Http\Controllers\Controller;
@@ -30,6 +31,7 @@ class TaskController extends Controller
      */
     public function show(Task $task)
     {
+        $this->authorize('view', $task);
         return TaskResource::make($task);
     }
     /**

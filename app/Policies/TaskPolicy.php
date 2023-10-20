@@ -2,6 +2,8 @@
 
 namespace App\Policies;
 
+use App\Http\Resources\TaskResource;
+use App\Models\Task;
 use App\Models\User;
 
 class TaskPolicy
@@ -12,5 +14,11 @@ class TaskPolicy
     public function __construct()
     {
         //
+    }
+    
+    public function view(User $user, Task $task): bool
+    {
+        //
+        return $user->id === $task->user_id;
     }
 }
